@@ -1,5 +1,4 @@
 // ⭐️ Example Challenge START ⭐️
-
 /**
  * ### Challenge `processFirstItem`
  * 
@@ -27,10 +26,22 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ * couter
+ *
+ * counter1 uses a closure. it returns a function that updates the variable in the parent function's scope.
+ 
+ counter2 increments a variable in the global scope named count.
  * 
  * 2. Which of the two uses a closure? How can you tell?
+ * counter1 uses a closure. It returns a function that affects a variable in the scope of the function
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * counter1's code might be useful if you only want the count variable to be increased by calling the inner function.
+ *That way, there's only one way that it can be increased.
+ * 
+ * counter2's code could be more preferable if you want to use the counter variable in many different functions as
+ * well as in the global scope, (logging and printing it out to the user for example.) 
  *
 */
 
@@ -53,44 +64,45 @@ function counter2() {
 
 
 /* Task 2: inning() 
-
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+return Math.round(Math.random() * 2);
 }
 
+
+
+
+
 /* Task 3: finalScore()
-
 Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
-
 For example, 
-
 finalScore(inning, 9) might return: 
 {
   "Home": 11,
   "Away": 5,
 }
-
 */ 
 
-function finalScore(/*code Here*/){
+ function finalScore(cb, inningNum){
 
-  /*Code Here*/
+   let score ={};
 
-}
+let homeTeamGamesScore=cb*inningNum;
+let awayTeamGamesScore=cb*inningNum;
 
-/* Task 4: 
+score.Home = homeTeamGamesScore;
+score.Away = awayTeamGamesScore;
 
+return score;
+ };
+ finalScore(inning(), 2);
+
+ /* Task 4: 
 Create a function called `scoreboard` that accepts the following parameters: 
-
 (1) Callback function `inning` that you wrote above
 (2) A number of innings
-
 and returns the score at each pont in the game, like so:
-
 1st inning: 0 - 2
 2nd inning: 1 - 3
 3rd inning: 1 - 3
@@ -100,11 +112,7 @@ and returns the score at each pont in the game, like so:
 7th inning: 4 - 6
 8th inning: 5 - 8
 9th inning: 6 - 10
-
 Final Score: 6 - 10 */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
-
-
+function scoreboard(cb, innings) {
+  let inningtext = ['1st Inning:', '2nd Inning:', '3rd Inning:', '4th Inning:', '5th Inning:', '6th Inning:', '7th Inning:', '8th Inning:', '9th Inning:', 'Extra Innings:']
